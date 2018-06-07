@@ -1,0 +1,12 @@
+{
+  "name": "elusivedocks/elusivedocks",
+  "description": "indescribable",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Gerd Christian Kunze",
+      "email": "gerdchristian.kunze@googlemail.com"
+    }
+  ]
+}
