@@ -1,38 +1,42 @@
 {
-  "name": "elusivedocks/elusivedocks",
-  "description": "indescribable",
-  "minimum-stability": "stable",
-  "prefer-stable": true,
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Gerd Christian Kunze",
-      "email": "gerdchristian.kunze@googlemail.com"
+    "name": "elusivedocks/elusivedocks",
+    "description": "indescribable",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Gerd Christian Kunze",
+            "email": "gerdchristian.kunze@googlemail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/elusivedocks/elusivedocks"
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "apcu-autoloader": false,
+        "vendor-dir": "Vendor"
+    },
+    "require": {
+        "php": "~7.2",
+        "symfony/symfony": "~4.1",
+        "symfony/var-dumper": "~4.1",
+        "twig/twig": "~2.4",
+        "doctrine/orm": "~2.6",
+        "phpfastcache/phpfastcache": "~7.0",
+        "filp/whoops": "~2.2",
+        "krakjoe/pthreads-polyfill": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "ElusiveDocks\\Core\\": "Core",
+            "ElusiveDocks\\Dock\\": "Dock"
+        }
+    },
+    "require-dev": {
     }
-  ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/elusivedocks/elusivedocks"
-    }
-  ],
-  "config": {
-    "optimize-autoloader": true,
-    "apcu-autoloader": false
-  },
-  "require": {
-    "php": "~7.2",
-    "symfony/symfony": "~4.1",
-    "twig/twig": "~2.4",
-    "doctrine/orm": "~2.6",
-    "phpfastcache/phpfastcache": "~7.0"
-  },
-  "autoload": {
-    "psr-4": {
-      "ED\\Core": "Core",
-      "ED\\Application": "Application"
-    }
-  },
-  "require-dev": {
-  }
 }
