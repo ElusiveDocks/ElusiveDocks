@@ -19,6 +19,9 @@ abstract class AbstractDock implements DockInterface
      */
     public function hasCarrier(CarrierInterface $carrier): bool
     {
+        if (empty($this->carriers)) {
+            return true;
+        }
         if( isset($this->carriers[get_class($carrier)]) ) {
             return true;
         }

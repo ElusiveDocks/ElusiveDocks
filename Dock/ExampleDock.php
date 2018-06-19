@@ -23,20 +23,16 @@ class ExampleDock extends AbstractDock implements DockInterface
                 $carrier->getExamplePropertyA() +1
             );
 
-            $carrier = (new Example2Carrier())->setExamplePropertyA($carrier->getExamplePropertyA());
-
-            return $carrier;
+            return (new Example2Carrier())->setExamplePropertyB($carrier->getExamplePropertyA());
         }
 
         if( $carrier instanceof Example2Carrier) {
 
-            $carrier->setExamplePropertyA(
-                $carrier->getExamplePropertyA() +10
+            $carrier->setExamplePropertyB(
+                $carrier->getExamplePropertyB() + 10
             );
 
-//            $carrier = (new Example2Carrier())->setExamplePropertyA($carrier->getExamplePropertyA());
-
-            return $carrier;
+            return (new ExampleCarrier())->setExamplePropertyA($carrier->getExamplePropertyB());
         }
 
         return $carrier;

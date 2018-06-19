@@ -7,10 +7,9 @@ use ElusiveDocks\Core\Contract\Kernel\RequestInterface;
 use ElusiveDocks\Core\Contract\Kernel\ResponseInterface;
 use ElusiveDocks\Core\DockManager;
 use ElusiveDocks\Core\Kernel\Http\Response;
-use ElusiveDocks\Dock\Example2Carrier;
+use ElusiveDocks\Dock\DebugDock;
 use ElusiveDocks\Dock\ExampleCarrier;
-use ElusiveDocks\Dock\ExampleDock;
-use Symfony\Component\VarDumper\VarDumper;
+use ElusiveDocks\Dock\ThreadManager;
 
 /**
  * Class HttpKernel
@@ -26,21 +25,27 @@ class HttpKernel implements KernelInterface
     {
         $response = new Response();
 
-
         $dm = new DockManager();
 
-        $dm->addDock((new ExampleDock())->addCarrier(new ExampleCarrier()));
+        $dm->addDock((new DebugDock()));
 
-        $dm->addDock((new ExampleDock())->setCarriers([new Example2Carrier(),new ExampleCarrier()]));
-
-        $dm->addDock((new ExampleDock())->addCarrier(new ExampleCarrier()));
-        $dm->addDock((new ExampleDock())->addCarrier(new Example2Carrier()));
+//        $dm->addDock((new ExampleDock())->addCarrier(new ExampleCarrier()));
+//
+//        $dm->addDock((new ExampleDock())->setCarriers([new Example2Carrier(),new ExampleCarrier()]));
+//
+//        $dm->addDock((new ExampleDock())->addCarrier(new Example2Carrier()));
+//        $dm->addDock((new ExampleDock())->addCarrier(new Example2Carrier()));
 
         $carrier = $dm->run(
             new ExampleCarrier()
         );
 
-        var_dump($carrier);
+        $TM = (new ThreadManager());
+
+        $TM->addDockManager($dm);
+        $TM->run($carrier);
+
+        dump($carrier);
 
         return $response;
     }

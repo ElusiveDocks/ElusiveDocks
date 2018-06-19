@@ -32,10 +32,17 @@ class DockManager
     {
 
         foreach ($this->dockRegister as $dock) {
-            var_dump( get_class($carrier) );
-            var_dump( $dock->getCarrierClasses() );
-            if( $dock->hasCarrier( $carrier ) ) {
-                $carrier = $dock->run($carrier);
+            if ($dock->hasCarrier($carrier)) {
+                $newCarrier = $dock->run($carrier);
+                if ($carrier !== $newCarrier) {
+                    dump('Run Dock: ' . get_class($dock) . ' Carrier: ' . get_class($carrier) . ' > ' . get_class($newCarrier));
+                } else {
+                    dump('Run Dock: ' . get_class($dock) . ' Carrier: ' . get_class($newCarrier));
+                }
+                $carrier = $newCarrier;
+
+            } else {
+                dump('Skip Dock: ' . get_class($dock) . ' Carrier: ' . get_class($carrier));
             }
         }
         return $carrier;
