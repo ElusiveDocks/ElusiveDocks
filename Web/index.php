@@ -1,21 +1,12 @@
 <?php
-ini_set('display_errors', 1);
-ob_end_flush();
-flush();
 
-//phpinfo();exit();
+require_once(__DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'bootstrap.php');
 
-$autoLoader = realpath(
-    __DIR__
-    . DIRECTORY_SEPARATOR
-    . '..'
-    . DIRECTORY_SEPARATOR
-    . 'vendor'
-    . DIRECTORY_SEPARATOR
-    . 'autoload.php'
+(new \ElusiveDocks\Dock\DebugDock())->run(
+    new \ElusiveDocks\Dock\Carrier\DebugCarrier(
+        new \Symfony\Component\VarDumper\Dumper\HtmlDumper()
+    )
 );
-
-require_once($autoLoader);
 
 $httpKernel = new \ElusiveDocks\Core\Kernel\HttpKernel();
 $httpRequest = new \ElusiveDocks\Core\Kernel\Http\Request();

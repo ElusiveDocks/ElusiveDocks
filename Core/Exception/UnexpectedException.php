@@ -11,9 +11,9 @@ class UnexpectedException extends AbstractException
     /**
      * @inheritDoc
      */
-    public function __construct()
+    public function __construct($message = null)
     {
-        parent::__construct('Unexpected Exception');
+        parent::__construct('Unexpected Exception' . ($message ? ': ' . $message : ''), -1);
     }
 
 }

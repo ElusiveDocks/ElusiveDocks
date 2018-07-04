@@ -5,6 +5,8 @@ namespace ElusiveDocks\Dock;
 use ElusiveDocks\Core\AbstractDock;
 use ElusiveDocks\Core\Contract\Carrier\CarrierInterface;
 use ElusiveDocks\Core\Contract\Dock\DockInterface;
+use ElusiveDocks\Dock\Carrier\Example2Carrier;
+use ElusiveDocks\Dock\Carrier\ExampleCarrier;
 
 /**
  * Class ExampleDock
@@ -15,7 +17,7 @@ class ExampleDock extends AbstractDock implements DockInterface
     /**
      * @inheritDoc
      */
-    public function run(CarrierInterface $carrier): CarrierInterface
+    public function run(CarrierInterface $carrier = null): ?CarrierInterface
     {
         if( $carrier instanceof ExampleCarrier) {
 

@@ -12,7 +12,7 @@ class ThreadDock1 extends AbstractDock implements DockInterface
     /**
      * @inheritDoc
      */
-    public function run(CarrierInterface $carrier): CarrierInterface
+    public function run(CarrierInterface $carrier = null): ?CarrierInterface
     {
         dump(__CLASS__ . ' Sleep 1s');
         sleep(1);

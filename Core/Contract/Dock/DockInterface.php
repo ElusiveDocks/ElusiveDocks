@@ -39,8 +39,8 @@ interface DockInterface
     public function setCarriers(array $carriers): DockInterface;
 
     /**
-     * @param CarrierInterface $carrier
-     * @return CarrierInterface
+     * @param CarrierInterface|null $carrier
+     * @return CarrierInterface|null
      */
-    public function run(CarrierInterface $carrier): CarrierInterface;
+    public function run(CarrierInterface $carrier = null): ?CarrierInterface;
 }

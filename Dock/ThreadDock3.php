@@ -12,7 +12,7 @@ class ThreadDock3 extends AbstractDock implements DockInterface
     /**
      * @inheritDoc
      */
-    public function run(CarrierInterface $carrier): CarrierInterface
+    public function run(CarrierInterface $carrier = null): ?CarrierInterface
     {
         dump(__CLASS__ . ' Sleep 3s');
         sleep(3);

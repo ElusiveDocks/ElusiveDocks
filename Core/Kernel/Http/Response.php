@@ -72,6 +72,6 @@ class Response extends AbstractResponse implements ResponseInterface
 
     private function sendContent()
     {
-
+        dump(__METHOD__);
     }
 }

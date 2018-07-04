@@ -1,13 +1,13 @@
 <?php
 
-namespace ElusiveDocks\Dock;
+namespace ElusiveDocks\Dock\Carrier;
 
 use ElusiveDocks\Core\AbstractCarrier;
 use ElusiveDocks\Core\Contract\Carrier\CarrierInterface;
 
 /**
  * Class ExampleCarrier
- * @package ElusiveDocks\Dock
+ * @package ElusiveDocks\Dock\Carrier
  */
 class ExampleCarrier extends AbstractCarrier implements CarrierInterface
 {

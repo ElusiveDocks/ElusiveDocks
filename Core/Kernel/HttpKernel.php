@@ -5,11 +5,9 @@ namespace ElusiveDocks\Core\Kernel;
 use ElusiveDocks\Core\Contract\Kernel\KernelInterface;
 use ElusiveDocks\Core\Contract\Kernel\RequestInterface;
 use ElusiveDocks\Core\Contract\Kernel\ResponseInterface;
-use ElusiveDocks\Core\DockManager;
 use ElusiveDocks\Core\Kernel\Http\Response;
-use ElusiveDocks\Dock\DebugDock;
-use ElusiveDocks\Dock\ExampleCarrier;
-use ElusiveDocks\Dock\ThreadManager;
+use ElusiveDocks\Core\ThreadManager;
+use ElusiveDocks\Core\ThreadPool;
 
 /**
  * Class HttpKernel
@@ -25,27 +23,58 @@ class HttpKernel implements KernelInterface
     {
         $response = new Response();
 
-        $dm = new DockManager();
+        dump($Start = microtime(true));
 
-        $dm->addDock((new DebugDock()));
+/*
+        for($run1 = 0; $run1 < 10; $run1++) {
+            $Work = 0;
+            $Manager[$run1] = new ThreadManager();
+            $Pool[$run1] = new ThreadPool($Manager[$run1]);
+            for ($run = 0; $run < 20; $run++) {
+                $Work += $Wait = rand(0, 1);
+                $Pool[$run1]->createThread('http://' . $_SERVER['SERVER_ADDR'] . '/thread.php?q=' . $Wait . '&c='.$run1.'.' . $run);
+            }
+        }
+        dump(microtime(true) - $Start);
 
-//        $dm->addDock((new ExampleDock())->addCarrier(new ExampleCarrier()));
-//
-//        $dm->addDock((new ExampleDock())->setCarriers([new Example2Carrier(),new ExampleCarrier()]));
-//
-//        $dm->addDock((new ExampleDock())->addCarrier(new Example2Carrier()));
-//        $dm->addDock((new ExampleDock())->addCarrier(new Example2Carrier()));
 
-        $carrier = $dm->run(
-            new ExampleCarrier()
+        foreach( $Manager as $threadManager ) {
+            $threadManager->runThreads();
+        }
+
+        dump(microtime(true) - $Start);
+        foreach( $Manager as $threadManager ) {
+            foreach($threadManager->getThreadHandlers() as $threadHandler) {
+                $Result = $threadHandler->getResult();
+                if( !empty($Result) ) {
+                    dump($threadHandler->getResult());
+                }
+            }
+            $threadManager->viewStatistics();
+        }
+
+        dump(microtime(true) - $Start);
+*/
+
+        $TP = new ThreadPool(
+            $TM = new ThreadManager()
         );
 
-        $TM = (new ThreadManager());
+        dump(microtime(true) - $Start);
 
-        $TM->addDockManager($dm);
-        $TM->run($carrier);
+        for( $c = 0; $c < 256; $c++ ) {
+            $TP->createThread('http://' . $_SERVER['SERVER_ADDR'] . '/thread.php?q=1&c='.$c);
+        }
 
-        dump($carrier);
+        dump(microtime(true) - $Start);
+
+        $TM->runThreads();
+
+        dump(microtime(true) - $Start);
+
+        $TM->viewStatistics();
+
+        dump(microtime(true) - $Start);
 
         return $response;
     }
